@@ -1,0 +1,27 @@
+.service {
+    position: relative;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.service img {
+    margin-top: 40px;
+    width: 90%;
+    border-radius: 15px;
+}
+
+.details {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(236, 235, 235, 0.74);
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.details h1 {
+    font-weight: 700;
+    font-size: 30px;
+    color: rgb(0, 162, 255);
+}

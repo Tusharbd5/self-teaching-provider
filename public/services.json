@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Coaching",
+        "img": "https://i.postimg.cc/bw4yN4mP/Service1.jpg",
+        "description": "The coaching service is one of our main part of all the services which we are providing. We have a lot of brancheds providing this service. You can easily adapt this service by clicking the button below."
+    },
+    {
+        "id": 2,
+        "name": "Consulting",
+        "img": "https://i.postimg.cc/8z7kGTBw/Service2.jpg",
+        "description": "The consulting service is one of our main part of all the services which we are providing. We have a lot of brancheds providing this service. You can easily adapt this service by clicking the button below."
+    },
+    {
+        "id": 3,
+        "name": "Self-development",
+        "img": "https://i.postimg.cc/J7KRBspP/Service3.jpg",
+        "description": "The Self development service is the best service which we are providing now. Here you will able to learn your position. You can easily adapt this service by clicking the button below."
+    }
+]

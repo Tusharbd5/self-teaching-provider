@@ -1,0 +1,11 @@
+.services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media screen and (max-width: 710px) {
+    .services {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

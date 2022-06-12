@@ -5,6 +5,10 @@
     padding: 10px;
 }
 
+.logo {
+    cursor: pointer;
+}
+
 .nav-items {
     display: flex;
     align-items: center;
@@ -19,7 +23,11 @@
 }
 
 .nav-items a:hover {
-    color: orange;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: cyan;
+    box-shadow: 0 0 5px #33ffff,
+        0 0 5px #66ffff;
 }
 
 .nav-toggle {
@@ -81,8 +89,6 @@
     .nav-items.open {
         height: auto;
         visibility: visible;
-        transition: top 0.5s;
-
     }
 
     .nav-items {
