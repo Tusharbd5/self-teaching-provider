@@ -1,12 +1,15 @@
+import { signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase-init';
 import CustomLink from '../CustomLink/CustomLink';
 import './Header.css';
 
 
 const Header = () => {
+    const [user] = useAuthState(auth);
     const handleToggle = () => {
         const items = document.querySelector('.nav-items');
         items.classList.toggle('open');
-
     }
 
     return (
@@ -23,7 +26,18 @@ const Header = () => {
                 <CustomLink to="/home#services">Services</CustomLink>
                 <CustomLink to="/blogs">Blogs</CustomLink>
                 <CustomLink to="/about">About Us</CustomLink>
-                <CustomLink to="/login">Login</CustomLink>
+                {
+                    user ?
+                        <button onClick={() => { signOut(auth) }} className='btn btn-light ms-4'>Sign Out</button>
+                        :
+                        <CustomLink to="/login">Login</CustomLink>
+                }
+                {
+                    user ?
+                        <p className='text-white ms-4 text-center'>{user.displayName}</p>
+                        :
+                        " "
+                }
             </div>
         </nav>
     );
