@@ -19,7 +19,7 @@ const Header = () => {
                 <span></span>
             </button>
             <div className='nav-items'>
-                <CustomLink to="/home">Home</CustomLink>
+                <CustomLink to="/">Home</CustomLink>
                 <CustomLink to="/home#services">Services</CustomLink>
                 <CustomLink to="/blogs">Blogs</CustomLink>
                 <CustomLink to="/about">About Us</CustomLink>
