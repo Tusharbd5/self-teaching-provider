@@ -22,9 +22,9 @@ const SocialLogin = () => {
     return (
         <div>
             <div className='d-flex align-items-center'>
-                <div style={{ height: '3px' }} className='w-50 bg-light'></div>
+                <div style={{ height: '1px' }} className='w-50 bg-success opacity-50'></div>
                 <p className='mt-2 mx-5'>or</p>
-                <div style={{ height: '3px' }} className='w-50 bg-light'></div>
+                <div style={{ height: '1px' }} className='w-50 bg-success opacity-50'></div>
             </div>
             {errorElement}
             <div className=''>

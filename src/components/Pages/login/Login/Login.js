@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../../firebase-init';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -17,6 +19,8 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+
     const handleSubmit = event => {
         event.preventDefault();
         const email = emailRef.current.value;
@@ -26,8 +30,23 @@ const Login = () => {
     const navigateToRegister = () => {
         navigate('/register');
     }
+
+    const handleResetPassword = async () => {
+        const email = emailRef.current.value;
+        if (email) {
+            await sendPasswordResetEmail(email);
+            alert('Sent email');
+        }
+        else {
+            toast("Please Enter The Email !!")
+        }
+    }
     if (user) {
         navigate('/home');
+    }
+    let errorElement;
+    if (error) {
+        errorElement = <p className='text-danger'>Error: {error?.message}</p>
     }
     return (
         <div className='container w-50'>
@@ -43,10 +62,16 @@ const Login = () => {
                     <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
                 </Form.Group>
 
+                {errorElement}
                 <Button className='w-50 fs-5' variant="primary" type="submit">
                     Login
                 </Button>
             </Form>
+            <>
+                <p onClick={handleResetPassword} style={{ cursor: "pointer", display: "inline-block" }} className='text-primary mt-2'>Forgot Password?</p>
+                <ToastContainer />
+            </>
+
             <p className='mt-2 fs-6'>New to Self Teaching Provider? <span style={{ cursor: "pointer" }} className='text-primary' onClick={navigateToRegister}>Please Register</span></p>
 
             <SocialLogin></SocialLogin>

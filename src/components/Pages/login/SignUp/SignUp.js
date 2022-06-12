@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../../firebase-init';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const SignUp = () => {
     const emailRef = useRef('');
@@ -15,7 +16,7 @@ const SignUp = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     const handleRegister = event => {
         event.preventDefault();
@@ -30,6 +31,11 @@ const SignUp = () => {
     }
     if (user) {
         navigate('/home')
+    }
+
+    let errorElement;
+    if (error) {
+        errorElement = <p className='text-danger'>Error: {error?.message}</p>
     }
     return (
         <div className='container w-50'>
@@ -49,12 +55,16 @@ const SignUp = () => {
                     <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
                 </Form.Group>
 
+                {errorElement}
                 <Button className='w-50 fs-5' variant="primary" type="submit">
                     Sign Up
                 </Button>
             </Form>
             <p className='mt-2 fs-6'>Already Have An Account? <span style={{ cursor: "pointer" }} className='text-primary' onClick={navigateToLogin}>Please Login</span></p>
+
+            <SocialLogin></SocialLogin>
         </div>
+
     );
 };
 
