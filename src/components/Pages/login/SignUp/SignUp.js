@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../../firebase-init';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import Loading from '../../Shared/Loading/Loading';
 
 const SignUp = () => {
     const emailRef = useRef('');
@@ -20,6 +21,9 @@ const SignUp = () => {
 
     const [updateProfile, updating, profileError] = useUpdateProfile(auth);
 
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
     const handleRegister = async (event) => {
         event.preventDefault();
         const email = emailRef.current.value;
@@ -28,15 +32,17 @@ const SignUp = () => {
         await createUserWithEmailAndPassword(email, password);
 
         await updateProfile({ displayName: name });
-        navigate('/home');
     }
-
+    if (loading) {
+        return <Loading></Loading>
+    }
     const navigateToLogin = () => {
         navigate('/login');
     }
     if (user) {
-        console.log(user);
+        navigate(from, { replace: true });
     }
+
 
     let errorElement;
     if (error) {

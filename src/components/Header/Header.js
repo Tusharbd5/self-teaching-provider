@@ -7,10 +7,12 @@ import './Header.css';
 
 const Header = () => {
     const [user] = useAuthState(auth);
+
     const handleToggle = () => {
         const items = document.querySelector('.nav-items');
         items.classList.toggle('open');
     }
+
 
     return (
         <nav className='header'>
