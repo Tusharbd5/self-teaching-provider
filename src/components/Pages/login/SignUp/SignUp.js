@@ -19,6 +19,8 @@ const SignUp = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
+
+
     const [updateProfile, updating, profileError] = useUpdateProfile(auth);
 
     const location = useLocation();
@@ -29,20 +31,22 @@ const SignUp = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         const name = nameRef.current.value;
-        await createUserWithEmailAndPassword(email, password);
 
+
+        await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
+
     }
     if (loading) {
         return <Loading></Loading>
     }
+
     const navigateToLogin = () => {
         navigate('/login');
     }
     if (user) {
         navigate(from, { replace: true });
     }
-
 
     let errorElement;
     if (error) {
